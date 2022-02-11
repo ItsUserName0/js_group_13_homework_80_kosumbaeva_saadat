@@ -1,14 +1,14 @@
 const express = require('express');
-const cors = require('cors');
 const db = require('./mySqlDb');
 const categories = require('./app/categories');
+const places = require('./app/places');
 const app = express();
 
 const port = 8000;
 
-app.use(cors());
 app.use(express.json());
 app.use('/categories', categories);
+app.use('/places', places);
 
 const run = async () => {
   await db.init();
