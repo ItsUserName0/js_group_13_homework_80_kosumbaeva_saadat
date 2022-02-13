@@ -43,8 +43,7 @@ router.post('/', async (req, res, next) => {
       categoryData.description
     ]);
     const [categories] = await db.getConnection().execute('SELECT * FROM categories WHERE id = ?', [results.insertId]);
-    const category = categories[0];
-    return res.send(category);
+    return res.send(categories[0]);
   } catch (e) {
     next(e);
   }
@@ -70,8 +69,7 @@ router.put('/:id', async (req, res, next) => {
       categoryData.id,
     ]);
     const [categories] = await db.getConnection().execute('SELECT * FROM categories WHERE id = ?', [req.params.id]);
-    const category = categories[0];
-    return res.send(category);
+    return res.send(categories[0]);
   } catch (e) {
     next(e);
   }

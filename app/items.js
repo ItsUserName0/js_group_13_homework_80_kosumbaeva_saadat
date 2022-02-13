@@ -20,7 +20,7 @@ const upload = multer({storage});
 
 router.get('/', async (req, res, next) => {
   try {
-    let [items] = await db.getConnection().execute('SELECT id, category_id, place_id, title FROM items');
+    let [items] = await db.getConnection().execute('SELECT id, category_id, place_id, title, date FROM items');
     return res.send(items);
   } catch (e) {
     next(e);
@@ -73,8 +73,7 @@ router.post('/', upload.single('image'), async (req, res, next) => {
       itemData.image,
     ]);
     const [items] = await db.getConnection().execute('SELECT * FROM items WHERE id = ?', [results.insertId]);
-    const item = items[0];
-    return res.send(item);
+    return res.send(items[0]);
   } catch (e) {
     next(e);
   }
@@ -115,8 +114,7 @@ router.put('/:id', upload.single('image'), async (req, res, next) => {
       itemData.id,
     ]);
     const [items] = await db.getConnection().execute('SELECT * FROM items WHERE id = ?', [req.params.id]);
-    const item = items[0];
-    return res.send(item);
+    return res.send(items[0]);
   } catch (e) {
     next(e);
   }
@@ -130,6 +128,5 @@ router.delete('/:id', async (req, res, next) => {
     next(e);
   }
 });
-
 
 module.exports = router;

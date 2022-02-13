@@ -70,8 +70,7 @@ router.put('/:id', async (req, res, next) => {
       placeData.id,
     ]);
     const [places] = await db.getConnection().execute('SELECT * FROM places WHERE id = ?', [req.params.id]);
-    const place = places[0];
-    return res.send(place);
+    return res.send(places[0]);
   } catch (e) {
     next(e);
   }
@@ -85,6 +84,5 @@ router.delete('/:id', async (req, res, next) => {
     next(e);
   }
 });
-
 
 module.exports = router;

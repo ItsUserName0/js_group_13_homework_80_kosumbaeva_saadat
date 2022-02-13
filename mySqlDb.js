@@ -9,5 +9,5 @@ module.exports = {
   },
   getConnection() {
     return connection;
-  }
-}
+  },
+};

@@ -11,4 +11,4 @@ module.exports = {
     password: 'root@root',
     database: 'kosumbaeva_saadat_hw_80',
   },
-}
+};
